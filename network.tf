@@ -48,7 +48,8 @@ resource "aws_nat_gateway" "gw" {
   allocation_id = element(aws_eip.gw.*.id, count.index)
 }
 
-#Create a new route table for the private subnets, make it route non-local traffic through the NAT gateway to the internet
+#Create a new route table for the private subnets 
+#make it route non-local traffic through the NAT gateway to the internet
 resource "aws_route_table" "private" {
   count  = var.az_count
   vpc_id = aws_vpc.main.id
